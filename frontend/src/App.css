@@ -1,0 +1,264 @@
+/* App Header & Branding Cockpit Layout */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 229, 255, 0.2);
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 45px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.header-branding-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+/* Circular Interactive Synaptic Core Logo */
+/* Minimalist Logo Container in Cockpit Header */
+.app-logo-minimalist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 229, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.app-logo-minimalist:hover {
+  border-color: rgba(255, 77, 255, 0.4);
+  box-shadow: 0 0 12px rgba(255, 77, 255, 0.25);
+}
+
+@keyframes spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-counter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-core {
+  0%, 100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 8px var(--primary-glow); }
+  50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 16px var(--primary-glow), 0 0 25px var(--primary-glow); }
+}
+
+.app-title-hud {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+}
+
+.app-subtitle-hud {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Systems Status Indicator ticker */
+.app-ticker-box {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 2rem;
+  background: rgba(5, 8, 22, 0.5);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.ticker-icon {
+  color: var(--secondary);
+  animation: spin-slow 8s linear infinite;
+}
+
+.ticker-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(5%); }
+  50% { transform: translateX(-40%); }
+  100% { transform: translateX(5%); }
+}
+
+/* Real-time Clock & Operator Identity Matrix */
+.header-identity-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.operator-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 77, 255, 0.6);
+  cursor: pointer;
+  padding: 2px 0 0 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ff4dff;
+  text-shadow: 0 0 8px rgba(255, 77, 255, 0.8);
+}
+
+/* Ticking HUD Clock */
+.header-clock-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.clock-time {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--primary);
+  text-shadow: 0 0 8px var(--primary-glow);
+  font-weight: bold;
+}
+
+.clock-date {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Glowing Navigation Tab Matrix
+   ========================================================================== */
+.navigation-tab-matrix {
+  display: flex;
+  background: rgba(13, 17, 38, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.35rem;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+
+.nav-tab-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-hud);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.nav-tab-btn:hover {
+  color: var(--primary);
+  background: rgba(0, 229, 255, 0.03);
+}
+
+.nav-tab-btn.active {
+  color: var(--text-primary);
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: inset 0 0 8px rgba(0, 229, 255, 0.1), 0 0 10px rgba(0, 229, 255, 0.1);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+.app-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-secure {
+  color: var(--mood-focused);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .header-clock-hud {
+    align-items: flex-start;
+  }
+  
+  .app-ticker-box {
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  .navigation-tab-matrix {
+    align-self: stretch;
+    justify-content: space-around;
+    overflow-x: auto;
+  }
+  
+  .nav-tab-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.65rem;
+  }
+}

@@ -1,0 +1,420 @@
+/* Orbit Capsule Wrapper */
+.memory-capsule-orb {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px; /* Soft rounded capsule shape */
+  padding: 1.5rem;
+  width: 100%;
+  min-height: 220px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible; /* To let orbit rings show outside */
+}
+
+/* Base Aura Glow corresponding to mood colors */
+.memory-capsule-orb::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  border-radius: 24px;
+  z-index: -1;
+  filter: blur(25px);
+  opacity: 0.15;
+  transition: all 0.5s ease;
+}
+
+/* Mood-specific Glowing Shadows & Auras */
+.memory-capsule-orb.mood-calm { 
+  border-color: rgba(0, 229, 255, 0.18); 
+  box-shadow: var(--glass-shadow), inset 0 0 15px rgba(0, 229, 255, 0.05);
+}
+.memory-capsule-orb.mood-calm::before { background: var(--mood-calm); }
+.memory-capsule-orb.mood-calm:hover {
+  border-color: var(--mood-calm);
+  box-shadow: var(--glass-shadow), 0 0 25px rgba(0, 229, 255, 0.45);
+}
+
+.memory-capsule-orb.mood-energetic { 
+  border-color: rgba(255, 77, 255, 0.18); 
+  box-shadow: var(--glass-shadow), inset 0 0 15px rgba(255, 77, 255, 0.05);
+}
+.memory-capsule-orb.mood-energetic::before { background: var(--mood-energetic); }
+.memory-capsule-orb.mood-energetic:hover {
+  border-color: var(--mood-energetic);
+  box-shadow: var(--glass-shadow), 0 0 25px rgba(255, 77, 255, 0.45);
+}
+
+.memory-capsule-orb.mood-euphoric { 
+  border-color: rgba(255, 179, 0, 0.18); 
+  box-shadow: var(--glass-shadow), inset 0 0 15px rgba(255, 179, 0, 0.05);
+}
+.memory-capsule-orb.mood-euphoric::before { background: var(--mood-euphoric); }
+.memory-capsule-orb.mood-euphoric:hover {
+  border-color: var(--mood-euphoric);
+  box-shadow: var(--glass-shadow), 0 0 25px rgba(255, 179, 0, 0.45);
+}
+
+.memory-capsule-orb.mood-cyber { 
+  border-color: rgba(124, 58, 237, 0.18); 
+  box-shadow: var(--glass-shadow), inset 0 0 15px rgba(124, 58, 237, 0.05);
+}
+.memory-capsule-orb.mood-cyber::before { background: var(--mood-cyber); }
+.memory-capsule-orb.mood-cyber:hover {
+  border-color: var(--mood-cyber);
+  box-shadow: var(--glass-shadow), 0 0 25px rgba(124, 58, 237, 0.45);
+}
+
+.memory-capsule-orb.mood-focused { 
+  border-color: rgba(57, 255, 20, 0.18); 
+  box-shadow: var(--glass-shadow), inset 0 0 15px rgba(57, 255, 20, 0.05);
+}
+.memory-capsule-orb.mood-focused::before { background: var(--mood-focused); }
+.memory-capsule-orb.mood-focused:hover {
+  border-color: var(--mood-focused);
+  box-shadow: var(--glass-shadow), 0 0 25px rgba(57, 255, 20, 0.45);
+}
+
+/* Hover Expansion / Levitation Enhancements */
+.memory-capsule-orb:hover {
+  transform: translateY(-12px) scale(1.02) !important;
+  background: var(--bg-glass-hover);
+}
+
+.memory-capsule-orb:hover::before {
+  opacity: 0.35;
+}
+
+/* Futuristic Concentric Orbit Ring Elements */
+.orb-ring-outer {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 1px dashed rgba(0, 229, 255, 0.06);
+  border-radius: 32px;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.orb-ring-inner {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 1px solid rgba(124, 58, 237, 0.04);
+  border-radius: 28px;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.memory-capsule-orb:hover .orb-ring-outer {
+  border-color: rgba(0, 229, 255, 0.25);
+  animation: spin-slow 25s linear infinite;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+}
+
+.memory-capsule-orb:hover .orb-ring-inner {
+  border-color: rgba(124, 58, 237, 0.25);
+  animation: spin-slow 12s linear infinite reverse;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+}
+
+/* Orb Core Content styling */
+.orb-core {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 2;
+  height: 100%;
+}
+
+.orb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+.orb-category {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  border-left: 2px solid var(--primary);
+}
+
+/* Dyn Mood dot inside capsule header */
+.orb-mood-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.mood-calm .orb-mood-indicator { color: var(--mood-calm); background: var(--mood-calm); }
+.mood-energetic .orb-mood-indicator { color: var(--mood-energetic); background: var(--mood-energetic); }
+.mood-euphoric .orb-mood-indicator { color: var(--mood-euphoric); background: var(--mood-euphoric); }
+.mood-cyber .orb-mood-indicator { color: var(--mood-cyber); background: var(--mood-cyber); }
+.mood-focused .orb-mood-indicator { color: var(--mood-focused); background: var(--mood-focused); }
+
+.orb-title {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.3;
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  letter-spacing: 1px;
+  min-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orb-preview {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  text-align: left;
+  min-height: 64px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orb-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.6rem;
+  font-size: 0.7rem;
+}
+
+.orb-tags {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.orb-tag {
+  background: rgba(0, 229, 255, 0.05);
+  color: var(--primary);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+}
+
+.mood-cyber .orb-tag {
+  background: rgba(124, 58, 237, 0.05);
+  color: var(--secondary);
+}
+
+.orb-tag-more {
+  color: var(--text-muted);
+  font-size: 0.6rem;
+}
+
+.orb-date {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Hologram Detail Chamber Overlay (Modal)
+   ========================================================================== */
+.hologram-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 4, 12, 0.8);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.hologram-modal-wrapper {
+  width: 100%;
+  max-width: 650px;
+  padding: 2.25rem;
+  border-color: rgba(0, 229, 255, 0.3) !important;
+  animation: modal-boot 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+  box-shadow: 0 0 50px rgba(0, 229, 255, 0.25), var(--glass-shadow) !important;
+}
+
+@keyframes modal-boot {
+  0% { transform: scale(0.9) rotateX(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotateX(0deg); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 1px solid rgba(255, 77, 255, 0.2);
+  color: var(--accent);
+  padding: 0.35rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 77, 255, 0.15);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: rotate(90deg);
+}
+
+.modal-banner {
+  font-size: 0.65rem;
+  color: var(--primary);
+  text-shadow: 0 0 4px var(--primary-glow);
+  border-bottom: 1px dashed rgba(0, 229, 255, 0.2);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner-pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse-accent 1.5s infinite;
+}
+
+@keyframes pulse-accent {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.modal-display-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.modal-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--secondary);
+  padding-left: 0.5rem;
+}
+
+.modal-title {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  line-height: 1.25;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.modal-content-scroller {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.modal-body-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.modal-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.tag-icon {
+  color: var(--text-muted);
+}
+
+.detail-tag {
+  background: rgba(124, 58, 237, 0.1);
+  color: #B983FF;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.modal-footer-meta {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-item.text-green {
+  color: var(--mood-focused);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.modal-actions button {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Edit Form Styles inside Modal */
+.modal-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}

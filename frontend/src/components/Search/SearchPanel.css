@@ -1,0 +1,198 @@
+.search-panel-container {
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.glow-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary);
+  display: inline-block;
+  animation: pulse-cyan 2s infinite;
+}
+
+.results-count {
+  color: var(--primary);
+  text-shadow: 0 0 5px var(--primary-glow);
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--primary);
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(5, 8, 22, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  transition: var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.15), inset 0 0 5px rgba(0, 229, 255, 0.1);
+}
+
+/* scanner laser line inside input */
+.scanner-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-input:focus + .scanner-line {
+  animation: scanning 1.5s infinite linear;
+  opacity: 0.6;
+}
+
+@keyframes scanning {
+  0% { transform: scaleX(0); opacity: 0.2; }
+  50% { transform: scaleX(1); opacity: 0.6; }
+  100% { transform: scaleX(0); opacity: 0.2; }
+}
+
+.filters-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.group-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--font-hud);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover {
+  background: rgba(0, 229, 255, 0.05);
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: var(--primary);
+  color: var(--text-primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+/* Mood Indicators */
+.mood-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.filter-btn.mood-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mood-btn.active {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+}
+
+.mood-btn.mood-calm.active {
+  border-color: var(--mood-calm);
+  color: var(--mood-calm);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.mood-btn.mood-energetic.active {
+  border-color: var(--mood-energetic);
+  color: var(--mood-energetic);
+  box-shadow: 0 0 8px rgba(255, 77, 255, 0.2);
+}
+
+.mood-btn.mood-euphoric.active {
+  border-color: var(--mood-euphoric);
+  color: var(--mood-euphoric);
+  box-shadow: 0 0 8px rgba(255, 179, 0, 0.2);
+}
+
+.mood-btn.mood-cyber.active {
+  border-color: var(--mood-cyber);
+  color: var(--mood-cyber);
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
+}
+
+.mood-btn.mood-focused.active {
+  border-color: var(--mood-focused);
+  color: var(--mood-focused);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.2);
+}
+
+/* Mood Dot Colors */
+.mood-dot.mood-all { background: var(--text-secondary); }
+.mood-dot.mood-calm { background: var(--mood-calm); box-shadow: 0 0 4px var(--mood-calm); }
+.mood-dot.mood-energetic { background: var(--mood-energetic); box-shadow: 0 0 4px var(--mood-energetic); }
+.mood-dot.mood-euphoric { background: var(--mood-euphoric); box-shadow: 0 0 4px var(--mood-euphoric); }
+.mood-dot.mood-cyber { background: var(--mood-cyber); box-shadow: 0 0 4px var(--mood-cyber); }
+.mood-dot.mood-focused { background: var(--mood-focused); box-shadow: 0 0 4px var(--mood-focused); }
